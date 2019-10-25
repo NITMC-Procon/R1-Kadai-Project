@@ -230,9 +230,9 @@ namespace UnityStandardAssets.Vehicles.Car
                 {
                     m_WheelColliders[i].brakeTorque = m_BrakeTorque * footbrake;
                 }
-                else if (m_Rigidbody.velocity.magnitude*3.6f > 20.5 && Vector3.Angle(transform.forward, m_Rigidbody.velocity) > 50f)
+                else if (m_Rigidbody.velocity.magnitude*3.6f > 40.5 && Vector3.Angle(transform.forward, m_Rigidbody.velocity) > 135f)
                 {
-                    m_Rigidbody.velocity = (20.5f / 3.6f) * m_Rigidbody.velocity.normalized;
+                    m_Rigidbody.velocity = (40.5f / 3.6f) * m_Rigidbody.velocity.normalized;
                 }
                 else if (footbrake > 0)
                 {
