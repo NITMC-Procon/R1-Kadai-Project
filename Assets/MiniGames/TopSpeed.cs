@@ -33,7 +33,7 @@ public class TopSpeed : MonoBehaviour
         if(Previous_Speed - Speed >= 20) Crash ++;
         Vector3 Forward = new Vector3(Car.transform.forward.x,0.0f,Car.transform.forward.z);
         if(Vector3.Angle(Forward, Car_Rigidbody.velocity) > 20f && Vector3.Angle(Forward, Car_Rigidbody.velocity) < 80f && Car_Rigidbody.velocity.magnitude*3.6f > 21) Drift ++;
-        TimeLeft = 10 - Time.time + StartedTime;
+        TimeLeft = 120 - Time.time + StartedTime;
         Score_Text.text = "TimeLeft:" + Mathf.Floor(TimeLeft) + "\nMaxSpeed:" + Mathf.Floor(MaxSpeed) + "\nCrash:" + Crash +"\nDrift:" + Drift;
         Previous_Speed = Speed;
 

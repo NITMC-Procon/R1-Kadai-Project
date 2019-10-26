@@ -20,5 +20,7 @@ public class Manager : MonoBehaviour
     {
         if(Mode == "topspeed") this.GetComponent<TopSpeed>().Game();
         if(Mode == "timeattack") this.GetComponent<TimeAttack>().Game();
+        if(Mode == "keepspeed") this.GetComponent<KeepSpeed>().Game();
+        if (Input.GetKey(KeyCode.Escape)) this.GetComponent<GameScene>().Menu();
     }
 }

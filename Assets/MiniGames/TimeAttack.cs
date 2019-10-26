@@ -64,7 +64,7 @@ public class TimeAttack : MonoBehaviour
         MarkerPoint = Marker.GetComponent<MarkerController>().MarkerPoint;
         UpdateMarker();
         ElapsedTime = Time.time - StartedTime;
-        Score_Text.text = "MarkerPoint:" + MarkerPoint + "\nTime:" + Mathf.Round(ElapsedTime*1000f)/1000f + "\nLatestLapTime:" + Mathf.Round(LatestLapTime*1000f)/1000f;
+        Score_Text.text = "Lap:" + Lap + "\nTime:" + Mathf.Round(ElapsedTime*1000f)/1000f + "\nLatestLapTime:" + Mathf.Round(LatestLapTime*1000f)/1000f;
         if(Lap >= NumberOfLaps+1){
             float Ave = 0;
             for(int i = 1;i<=NumberOfLaps;i++){
