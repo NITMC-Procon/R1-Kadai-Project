@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
@@ -7,28 +8,40 @@ public class CameraShot : MonoBehaviour
 {
     Texture2D _tex;
     RenderTexture _renderTex;
+    private Camera cam;
+    [SerializeField] private GameObject Manager;
+    private GameScene SceneManager;
+    private Text Text_Popup;
     void Start()
     {
-        _tex = new Texture2D(Screen.currentResolution.width, Screen.currentResolution.height, TextureFormat.RGBA32, false);
-        _renderTex = new RenderTexture(_tex.width, _tex.height, 24, RenderTextureFormat.ARGB32);
-        if(SystemInfo.supportsAsyncGPUReadback){
-            Debug.Log("OK");
-        }
+        SceneManager = Manager.GetComponent<GameScene>();
+        Text_Popup = Manager.GetComponent<Manager>().Text_Popup.GetComponent<Text>();
+        cam = this.GetComponent<Camera>();
+        cam.enabled = false;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(Input.GetKeyDown(KeyCode.S)){
-            var reqest = AsyncGPUReadback.Request(_renderTex);
-            if(reqest.done){
-            Unity.Collections.NativeArray<Color32> buffer = reqest.GetData<Color32>();
-            _tex.LoadRawTextureData(buffer);
-            _tex.Apply();
-            }
-
-
-            Debug.Log("OK");
+            cam.Render();
         }
+    }
+    public void CamShot()
+    {
+        StartCoroutine("Wait");
+        GameScene.Mode = "IIZK";
+        Text_Popup.text = "You Are an IIZK!!";
+        cam.Render();
+        StartCoroutine("End");
+    }
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(0.5f);
+    }
+    IEnumerator End()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.IIZK();
     }
 }

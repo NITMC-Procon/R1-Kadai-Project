@@ -8,6 +8,7 @@ public class Manager : MonoBehaviour
     public string Mode;
     public GameObject Car;
     public GameObject Text_Object;
+    public GameObject Text_Popup;
     float Score;
     void Start()
     {
@@ -21,6 +22,6 @@ public class Manager : MonoBehaviour
         if(Mode == "topspeed") this.GetComponent<TopSpeed>().Game();
         if(Mode == "timeattack") this.GetComponent<TimeAttack>().Game();
         if(Mode == "keepspeed") this.GetComponent<KeepSpeed>().Game();
-        if (Input.GetKey(KeyCode.Escape)) this.GetComponent<GameScene>().Menu();
+        if(Input.GetKey(KeyCode.Escape)) this.GetComponent<GameScene>().Menu();
     }
 }

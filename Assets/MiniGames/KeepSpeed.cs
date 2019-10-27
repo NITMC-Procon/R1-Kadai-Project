@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class KeepSpeed : MonoBehaviour
 {
     Text Score_Text;
+    Text Text_Popup;
     GameObject Manager;
     GameObject Car;
     Rigidbody Car_Rigidbody;
@@ -19,6 +20,7 @@ public class KeepSpeed : MonoBehaviour
     void Start()
     {
         Score_Text = this.GetComponent<Manager>().Text_Object.GetComponent<Text>();
+        Text_Popup = this.GetComponent<Manager>().Text_Popup.GetComponent<Text>();
         Car = this.GetComponent<Manager>().Car;
         Car_Rigidbody = Car.GetComponent<Rigidbody>();
         StartedTime = Time.time;
@@ -37,10 +39,13 @@ public class KeepSpeed : MonoBehaviour
         if(GameStarted == true && Speed<60f) {
             if(Limit>0) Limit -= Time.deltaTime;
         }else if(Speed>60f) Limit = 4.0f;
+        if(Limit<0)Limit = 0;
         TimeLeft = 120 - Time.time + StartedTime;
         Score_Text.text = "TimeLeft:" + Mathf.Floor(TimeLeft) + "\nExprode:" + Mathf.Floor(Limit*10)/10;
-        if(Mathf.Floor(Limit*10)/10 < 0 || TimeLeft < 0) Score = 120 - TimeLeft;
+        if(Mathf.Floor(Limit*10)/10 <= 0 || TimeLeft <= 0) Score = 120 - TimeLeft;
         if(Score != -1){
+            if(Score < 120)Text_Popup.text = "Failed!!";
+            else Text_Popup.text = "Success!!";
             Delay -= Time.deltaTime;
             if(Delay <= 0){
                 this.GetComponent<GameScene>().Result(Mathf.Floor(Score));

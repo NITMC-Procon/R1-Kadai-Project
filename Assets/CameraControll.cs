@@ -18,7 +18,6 @@ public class CameraControll : MonoBehaviour
         transform.position = target.TransformPoint(_offset);
         transform.LookAt(target, Vector3.up);
     }
-
     void FixedUpdate()
     {
         Gear = target.GetComponent<CarUserControl>().Gear;
