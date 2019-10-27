@@ -28,4 +28,8 @@ public class GameScene : MonoBehaviour
     {
         SceneManager.LoadScene("Menu");
     }
+    
+    void Update(){
+        Debug.Log(1f / Time.deltaTime);
+    }
 }
