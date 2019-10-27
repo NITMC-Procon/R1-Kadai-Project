@@ -16,15 +16,17 @@ public class enableRigbody : MonoBehaviour
     void SetKinematic(bool newValue)
     {
 	    Component[] components=GetComponentsInChildren(typeof(Rigidbody));
-	    Component[] collider=GetComponentsInChildren(typeof(CapsuleCollider));
+	    Component[] joints=GetComponentsInChildren(typeof(CharacterJoint));
 
 	    foreach (Component c in components)
 	    {
 		    (c as Rigidbody).isKinematic=newValue;
     	}
-	    foreach (Component c in collider)
+        foreach (Component c in joints)
 	    {
-		    (c as CapsuleCollider).isTrigger=true;
+            SoftJointLimit HighLimit = (c as CharacterJoint).highTwistLimit;
+            HighLimit.limit = 0.0f;
+            (c as CharacterJoint).highTwistLimit = HighLimit;
     	}
     }
     void OnTriggerEnter(Collider collision)

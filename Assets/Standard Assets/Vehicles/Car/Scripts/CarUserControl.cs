@@ -13,6 +13,10 @@ namespace UnityStandardAssets.Vehicles.Car
         {
             // get the car controller
             m_Car = GetComponent<CarController>();
+            
+            this.transform.position = new Vector3(-134.02f, 5.1f, -42.0f);
+            this.transform.eulerAngles = new Vector3(0f,0f,0f);
+            this.GetComponent<Rigidbody>().velocity = new Vector3(0f,0f,0f);
         }
 
         float leave = 3.0f;

@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class GameScene : MonoBehaviour
 {
     public static float Score;
     public static string Mode;
+    void Start(){
+        File.Delete("Assets/Resources/hoge.jpg");
+    }
     public static string getMode() {
         return Mode;
     }
