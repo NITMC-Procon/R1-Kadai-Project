@@ -11,6 +11,6 @@ public class ShowScore : MonoBehaviour
     void Start()
     {
         ScoreBoard = this.GetComponent<Text>();
-        ScoreBoard.text = "Score:" +  Score;
+        ScoreBoard.text = "スコア:" +  Score;
     }
 }

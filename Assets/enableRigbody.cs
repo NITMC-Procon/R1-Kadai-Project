@@ -7,11 +7,12 @@ using UnityEngine;
 
 public class enableRigbody : MonoBehaviour
 {
+    public Manager Manager_Obj;
     [SerializeField] private CameraShot Cam;
     GameObject Car;
     void Start(){
         SetKinematic(true);
-        Car = GameObject.Find("Car");
+        Car = Manager_Obj.Car;
     }
     void SetKinematic(bool newValue)
     {

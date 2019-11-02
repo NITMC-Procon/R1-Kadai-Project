@@ -10,8 +10,10 @@ public class Manager : MonoBehaviour
     public GameObject Text_Object;
     public GameObject Text_Popup;
     float Score;
+    [SerializeField] private GameObject[] Cars = new GameObject[4];
     void Start()
     {
+        Car = Instantiate(Cars[GameScene.Carnum], new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
         Mode = GameScene.Mode;
         Score = 0.0f;
     }

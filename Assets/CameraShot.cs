@@ -32,7 +32,7 @@ public class CameraShot : MonoBehaviour {
             texture.LoadRawTextureData (buffer);
             texture.Apply();
             byte[] bytes = texture.EncodeToJPG ();
-            File.WriteAllBytes ("Assets/Resources/hoge.jpg", bytes);
+            File.WriteAllBytes ("./Assets/hoge.jpg", bytes);
         }
     }
     public void CamShot () {
@@ -44,10 +44,10 @@ public class CameraShot : MonoBehaviour {
     IEnumerator IIZK () {
         yield return new WaitForSeconds (0.1f);
         GameScene.Mode = "IIZK";
-        Text_Popup.text = "You Are an IIZK!!";
+        Text_Popup.text = "勲章ゲット!!";
         cam.Render ();
         request = AsyncGPUReadback.Request (cam.targetTexture);  
-        yield return new WaitForSeconds (2f);
+        yield return new WaitForSeconds (4f);
         SceneManager.IIZK ();
     }
 }

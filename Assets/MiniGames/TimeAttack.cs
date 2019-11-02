@@ -8,6 +8,7 @@ public class TimeAttack : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private int NumberOfLaps;
     Text Score_Text;
+    Text Text_Popup;
     public GameObject Marker;
     int Lap = 0;
     int MarkerPoint = 0;
@@ -18,6 +19,7 @@ public class TimeAttack : MonoBehaviour
     float TimeCount　= 2;
     void Start(){
         Score_Text = this.GetComponent<Manager>().Text_Object.GetComponent<Text>();
+        Text_Popup = this.GetComponent<Manager> ().Text_Popup.GetComponent<Text> ();
         StartedTime = Time.time;
     }
     float LapTime(int count){
@@ -49,6 +51,7 @@ public class TimeAttack : MonoBehaviour
                 break;
             }
             case 10:
+                Text_Popup.text = "ゴール!!";
                 TimeCount -= Time.deltaTime;
                 Marker.transform.position = new Vector3(0f,-5000f,0f);
                 if(TimeCount <= 0){
@@ -64,7 +67,9 @@ public class TimeAttack : MonoBehaviour
         MarkerPoint = Marker.GetComponent<MarkerController>().MarkerPoint;
         UpdateMarker();
         ElapsedTime = Time.time - StartedTime;
-        Score_Text.text = "Lap:" + Lap + "\nTime:" + Mathf.Round(ElapsedTime*1000f)/1000f + "\nLatestLapTime:" + Mathf.Round(LatestLapTime*1000f)/1000f;
+        if(ElapsedTime<4) Text_Popup.text = "マーカーを追いかける";
+        else if(ElapsedTime<7) Text_Popup.text = "";
+        Score_Text.text = "ラップ:" + Lap + "\nタイム:" + Mathf.Round(ElapsedTime*1000f)/1000f + "\nラップタイム:" + Mathf.Round(LatestLapTime*1000f)/1000f;
         if(Lap >= NumberOfLaps+1){
             float Ave = 0;
             for(int i = 1;i<=NumberOfLaps;i++){

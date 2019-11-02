@@ -12,17 +12,17 @@ public class Speed : MonoBehaviour
     [SerializeField]
     private GameObject score_object = null;
     [SerializeField]
-    private GameObject car_object = null;
+    private Manager Manager_Obj;
+    private GameObject car_object;
     void Start()
     {
-        
+        car_object = Manager_Obj.Car;
     }
 
-    // Update is called once per frame
     void Update()
     {
         Text score_text = score_object.GetComponent<Text>();
         float speed = car_object.GetComponent<Rigidbody>().velocity.magnitude * 3.6f;
-        score_text.text = "Speed:" + Mathf.Floor(speed);
+        score_text.text = "スピード:" + Mathf.Floor(speed) + "km/h";
     }
 }

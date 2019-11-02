@@ -6,7 +6,6 @@ public class TopSpeed : MonoBehaviour
 {
 
     Text Score_Text;
-    GameObject Manager;
     GameObject Car;
     Rigidbody Car_Rigidbody;
     public float MaxSpeed = 0;
@@ -34,7 +33,7 @@ public class TopSpeed : MonoBehaviour
         Vector3 Forward = new Vector3(Car.transform.forward.x,0.0f,Car.transform.forward.z);
         if(Vector3.Angle(Forward, Car_Rigidbody.velocity) > 20f && Vector3.Angle(Forward, Car_Rigidbody.velocity) < 80f && Car_Rigidbody.velocity.magnitude*3.6f > 21) Drift ++;
         TimeLeft = 120 - Time.time + StartedTime;
-        Score_Text.text = "TimeLeft:" + Mathf.Floor(TimeLeft) + "\nMaxSpeed:" + Mathf.Floor(MaxSpeed) + "\nCrash:" + Crash +"\nDrift:" + Drift;
+        Score_Text.text = "残り時間:" + Mathf.Floor(TimeLeft) + "\n最高速度:" + Mathf.Floor(MaxSpeed);// + "\n事故数:" + Crash +"\nドリフト:" + Drift
         Previous_Speed = Speed;
 
         

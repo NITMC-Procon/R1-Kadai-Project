@@ -6,6 +6,8 @@ public class CameraControll : MonoBehaviour
 {
 
     public Transform target;
+    [SerializeField]
+    private Manager Manager_Obj;
 
     private const float _distance = 6.2f;
     private Vector3 _offset = new Vector3(0f, 3.8f, -_distance);
@@ -15,6 +17,7 @@ public class CameraControll : MonoBehaviour
     char Gear;
     void Start()
     {
+        target = Manager_Obj.Car.GetComponent<Transform>();
         transform.position = target.TransformPoint(_offset);
         transform.LookAt(target, Vector3.up);
     }

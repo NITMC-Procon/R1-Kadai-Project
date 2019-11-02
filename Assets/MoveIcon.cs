@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class MoveIcon : MonoBehaviour
 {
-    public Transform Car;
+    Transform Car;
+    public Manager Manager_Obj;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Car = Manager_Obj.Car.GetComponent<Transform>();
     }
 
     // Update is called once per frame
